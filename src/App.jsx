@@ -187,15 +187,65 @@ export default function App() {
           )}
 
           {activePage === 'panduan' && (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              <div className="bg-white p-6 rounded-3xl shadow-sm border border-gray-100">
-                <div className="w-12 h-12 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center mb-4"><i className="fas fa-bottle-water"></i></div>
-                <h4 className="font-bold mb-2 text-gray-800">Botol Plastik PET</h4>
-                <p className="text-sm text-gray-500">Bisa didaur ulang menjadi serat poliester atau botol baru.</p>
-                <span className="text-[10px] bg-blue-50 text-blue-600 px-2 py-1 rounded-full font-bold mt-4 inline-block tracking-widest">+50 XP / Kg</span>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+  <div className="bg-white p-8 rounded-3xl shadow-md">
+    <div className="w-20 h-20 bg-blue-100 rounded-3xl flex items-center justify-center overflow-hidden">
+      <img
+        src="/plastic-bottle.png"
+        alt="Botol Plastik PET"
+        className="w-12 h-12 object-contain"
+      />
+    </div>
+
+    <h3 className="text-xl font-bold mt-4">Botol Plastik PET</h3>
+    <p className="text-gray-500 mt-3">
+      Bisa didaur ulang menjadi serat poliester atau botol baru.
+    </p>
+
+    <span className="inline-block mt-6 bg-blue-50 text-blue-600 font-bold px-4 py-2 rounded-full">
+      +50 XP / Kg
+    </span>
+  </div>
+
+  <div className="bg-white p-8 rounded-3xl shadow-md">
+    <div className="w-20 h-20 bg-green-100 rounded-3xl flex items-center justify-center overflow-hidden">
+      <img
+        src="garbage.png"
+        alt="Kertas Bekas"
+        className="w-12 h-12 object-contain"
+      />
+    </div>
+
+    <h3 className="text-xl font-bold mt-4">Sampah Organik</h3>
+    <p className="text-gray-500 mt-3">
+      Bisa didaur ulang menjadi pupuk kompos.
+    </p>
+
+    <span className="inline-block mt-6 bg-green-50 text-green-600 font-bold px-4 py-2 rounded-full">
+      +30 XP / Kg
+    </span>
+  </div>
+</div>
+          )}
+
+
+
+          {activePage === 'reward' && (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="bg-white p-6 rounded-3xl border-2 border-green-500 shadow-lg flex justify-between items-center">
+                <div>
+                  <p className="text-xs text-gray-400 uppercase font-bold">Voucher Belanja</p>
+                  <h4 className="font-bold text-xl text-green-700">Rp 50.000</h4>
+                </div>
+                <button onClick={() => handleRedeem(5000)} className="bg-green-600 text-white px-6 py-2 rounded-xl text-sm font-bold shadow-md hover:bg-green-700 transition">
+                  Tukar 5k Poin
+                </button>
               </div>
             </div>
           )}
+
+
+          
 
           {activePage === 'reward' && (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
