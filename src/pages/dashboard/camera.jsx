@@ -95,7 +95,7 @@ const CameraPage = () => {
 
     setResult(data);
     setLoading(false);
-    setShowResult(true);
+    setShowResult(true)
   };
 
   return (
@@ -162,13 +162,6 @@ const CameraPage = () => {
               </p>
             </div>
           </div>
-
-          <button
-            onClick={}
-            className={`${isCameraOpen ? "bg-red-600 hover:bg-red-700" : "bg-green-600 hover:bg-green-700"} text-white px-10 py-4 rounded-2xl font-bold transition transform active:scale-95 shadow-lg`}
-          >
-            {isCameraOpen ? "Tutup Kamera" : "Buka Kamera"}
-          </button>
         </div>
       )}
     </div>
