@@ -13,10 +13,8 @@ const Sidebar = ({ activePage, setActivePage, user }) => {
         {[
           { id: "dashboard", label: "Dashboard", icon: "fa-columns" },
           { id: "scan", label: "Smart Scan AI", icon: "fa-camera" },
-          { id: "panduan", label: "Panduan Daur Ulang", icon: "fa-book" },
           { id: "reward", label: "Tukar Reward", icon: "fa-gift" },
           { id: "komunitas", label: "Komunitas", icon: "fa-users" },
-          { id: "gps", label: "Lokasi Terdekat", icon: "fa-map-marker-alt" },
         ].map((item) => (
           <button
             key={item.id}
@@ -37,14 +35,14 @@ const Sidebar = ({ activePage, setActivePage, user }) => {
           <p className="text-xs font-bold text-green-700 uppercase mb-1">
             Eco Warrior
           </p>
-          <p className="text-[10px] text-green-600 mb-3">{user?.totalXP} / 1000 XP</p>
+          <p className="text-[10px] text-green-600 mb-3">{user?.totalXP || 0} / 1000 XP</p>
           <div className="w-full bg-green-200 h-1.5 rounded-full overflow-hidden">
             <div
               className="bg-green-600 h-full transition-all duration-500"
               style={{ width: `${Math.min((user?.totalXP / 1000) * 100, 100)}%` }}
             ></div>
           </div>
-        </div>
+        </div>  
       </div>
     </aside>
   );

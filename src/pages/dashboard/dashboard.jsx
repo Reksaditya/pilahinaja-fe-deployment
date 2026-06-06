@@ -60,7 +60,7 @@ export const Dashboard = () => {
         }
       } catch (err) {
         console.error(err);
-      } 
+      }
       // finally {
       //   setLoading(false);
       // }
@@ -103,7 +103,6 @@ export const Dashboard = () => {
         user={user}
       />
 
-      {/* MAIN CONTENT */}
       <main className="flex-1 overflow-y-auto">
         <header className="bg-white/80 backdrop-blur-md sticky top-0 z-40 border-b border-gray-100 px-8 py-4 flex justify-between items-center">
           <h2 className="font-bold text-gray-800 text-lg capitalize">
@@ -171,36 +170,8 @@ export const Dashboard = () => {
                 </div>
               </section>
 
-              <section className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                <div className="lg:col-span-2 bg-white rounded-[2.5rem] p-8 border border-gray-100 shadow-sm">
-                  <div className="flex justify-between items-center mb-8">
-                    <h3 className="font-bold text-gray-800">
-                      Statistik Daur Ulang
-                    </h3>
-                    <select className="bg-gray-50 border-none rounded-lg text-xs font-bold p-2 outline-none">
-                      <option>7 Hari Terakhir</option>
-                      <option>Bulan Ini</option>
-                    </select>
-                  </div>
-                  <div className="flex items-end justify-between gap-2 h-48 px-4">
-                    {[40, 60, 90, 30, 55, 80, 45].map((height, i) => (
-                      <div
-                        key={i}
-                        className={`w-full rounded-t-xl transition-all duration-500 ${height === 90 ? "bg-green-500" : "bg-green-100"}`}
-                        style={{ height: `${height}%` }}
-                      ></div>
-                    ))}
-                  </div>
-                  <div className="flex justify-between mt-4 px-4 text-[10px] font-bold text-gray-400 uppercase">
-                    {["Sen", "Sel", "Rab", "Kam", "Jum", "Sab", "Min"].map(
-                      (day) => (
-                        <span key={day}>{day}</span>
-                      ),
-                    )}
-                  </div>
-                </div>
-
-                <div className="bg-white rounded-[2.5rem] p-8 border border-gray-100 shadow-sm">
+              <section className="grid grid-cols-1 gap-8 h-full">
+                <div className="bg-white rounded-[2.5rem] p-8 border border-gray-100 shadow-sm w-full h-screen">
                   <h3 className="font-bold text-gray-800 mb-6">
                     Leaderboard Lokal
                   </h3>
@@ -221,10 +192,10 @@ export const Dashboard = () => {
                           : "US"}
                       </div>
                       <div className="flex-1 font-bold text-sm text-green-700">
-                        Kamu
+                        {user.username}
                       </div>
                       <p className="text-xs font-black text-green-600">
-                        {user?.rankXp}
+                        {user.totalXP || 0}
                       </p>
                     </div>
                     <div className="flex items-center gap-4">
@@ -249,68 +220,7 @@ export const Dashboard = () => {
                   Arahkan kamera ke sampah
                 </p>
               </div>
-              {/* <div>
-                <button
-                  onClick={openCamera}
-                  className="bg-green-600 text-white px-10 py-4 rounded-2xl font-bold hover:bg-green-700 transition transform active:scale-95 shadow-lg"
-                >
-                  Ambil Foto & Analisis (AI)
-                </button>
-
-                <video ref={videoRef} autoPlay playsInline />
-                <canvas ref={canvasRef} style={{ display: "none" }} />
-                <img ref={imgRef} />
-                <button
-                  onClick={takePhoto}
-                  className={`bg-green-600 text-white px-10 py-4 rounded-2xl font-bold hover:bg-green-700 transition transform active:scale-95 shadow-lg ${isCameraOpen ? "block" : "hidden"}`}
-                >
-                  Ambil Foto
-                </button>
-              </div>
-              <button onClick={openCamera}>Buka Kamera</button> */}
               <CameraPage />
-            </div>
-          )}
-
-          {activePage === "panduan" && (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="bg-white p-8 rounded-3xl shadow-md">
-                <div className="w-20 h-20 bg-blue-100 rounded-3xl flex items-center justify-center overflow-hidden">
-                  <img
-                    src="/plastic-bottle.png"
-                    alt="Botol Plastik PET"
-                    className="w-12 h-12 object-contain"
-                  />
-                </div>
-
-                <h3 className="text-xl font-bold mt-4">Botol Plastik PET</h3>
-                <p className="text-gray-500 mt-3">
-                  Bisa didaur ulang menjadi serat poliester atau botol baru.
-                </p>
-
-                <span className="inline-block mt-6 bg-blue-50 text-blue-600 font-bold px-4 py-2 rounded-full">
-                  +50 XP / Kg
-                </span>
-              </div>
-
-              <div className="bg-white p-8 rounded-3xl shadow-md">
-                <div className="w-20 h-20 bg-green-100 rounded-3xl flex items-center justify-center overflow-hidden">
-                  <img
-                    src="garbage.png"
-                    alt="Kertas Bekas"
-                    className="w-12 h-12 object-contain"
-                  />
-                </div>
-
-                <h3 className="text-xl font-bold mt-4">Sampah Organik</h3>
-                <p className="text-gray-500 mt-3">
-                  Bisa didaur ulang menjadi pupuk kompos.
-                </p>
-
-                <span className="inline-block mt-6 bg-green-50 text-green-600 font-bold px-4 py-2 rounded-full">
-                  +30 XP / Kg
-                </span>
-              </div>
             </div>
           )}
 
@@ -367,30 +277,6 @@ export const Dashboard = () => {
               <button className="bg-green-600 text-white p-3 rounded-xl hover:bg-green-700 transition">
                 <i className="fas fa-paper-plane"></i>
               </button>
-            </div>
-          )}
-
-          {activePage === "gps" && (
-            <div className="bg-white p-8 rounded-[2.5rem] border border-gray-100 shadow-sm">
-              <h3 className="font-bold mb-6 italic">
-                <i className="fas fa-search-location mr-2 text-green-600"></i>
-                Pengepul & Bank Sampah Terdekat
-              </h3>
-              <div className="space-y-4">
-                <div className="p-4 bg-green-50 rounded-2xl flex justify-between items-center border border-green-100 transition hover:scale-[1.01] cursor-pointer">
-                  <div>
-                    <p className="font-bold text-gray-800">
-                      Bank Sampah Sukapura
-                    </p>
-                    <p className="text-xs text-gray-400">
-                      0.8 km • Jl. Telekomunikasi
-                    </p>
-                  </div>
-                  <span className="bg-green-600 text-white px-3 py-1 rounded-lg text-[10px] font-bold">
-                    BUKA
-                  </span>
-                </div>
-              </div>
             </div>
           )}
         </div>

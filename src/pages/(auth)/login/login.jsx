@@ -132,28 +132,6 @@ export const Login = () => {
                 Masuk
               </button>
 
-              <div className="flex items-center gap-4">
-                <div className="h-px bg-gray-200 flex-1"></div>
-                <span className="text-gray-400 text-sm">atau masuk dengan</span>
-                <div className="h-px bg-gray-200 flex-1"></div>
-              </div>
-
-              <div className="grid grid-cols-2 gap-4">
-                <button
-                  type="button"
-                  className="border border-gray-200 rounded-xl py-4 font-semibold hover:bg-gray-50"
-                >
-                  Google
-                </button>
-
-                <button
-                  type="button"
-                  className="border border-gray-200 rounded-xl py-4 font-semibold hover:bg-gray-50"
-                >
-                  Facebook
-                </button>
-              </div>
-
               <p className="text-center text-gray-500">
                 Belum punya akun?{" "}
                 <span className="font-bold text-green-600 cursor-pointer" onClick={() => navigate("/register")}>
