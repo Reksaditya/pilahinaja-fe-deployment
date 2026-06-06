@@ -2,25 +2,27 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-export const Login = () => {
+export const Register = () => {
+  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
   const API_URL = import.meta.env.VITE_SERVER_URL;
 
-  const handleLogin = async (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
-
+  
     try {
       const response = await fetch(
-        `${API_URL}/auth/login`,
+        `${API_URL}/auth/register`,
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
+            username,
             email,
             password,
           }),
@@ -82,14 +84,27 @@ export const Login = () => {
         <div className="flex items-center justify-center bg-white p-8 lg:p-16">
           <div className="w-full max-w-lg border border-gray-100 rounded-4xl p-10 shadow-sm">
             <h2 className="text-4xl font-black text-slate-800">
-              Selamat Datang Kembali! 🌱
+              Buat Akun Baru! 🌱
             </h2>
 
             <p className="text-gray-500 mt-3">
-              Masuk untuk melanjutkan perjalananmu menjadi Eco Warrior.
+              Daftar untuk menjadi bagian dari komunitas Eco Warrior.
             </p>
 
-            <form className="mt-10 space-y-6" onSubmit={handleLogin}>
+            <form className="mt-10 space-y-6" onSubmit={handleRegister}>
+              <div>
+                <label className="font-semibold text-slate-700">Username</label>
+
+                <input
+                  type="text"
+                  placeholder="Masukkan username"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                  className="w-full mt-2 p-4 rounded-xl border border-gray-200 outline-none focus:border-green-500"
+                  required
+                />
+              </div>
+
               <div>
                 <label className="font-semibold text-slate-700">Email</label>
 
@@ -129,12 +144,12 @@ export const Login = () => {
                 type="submit"
                 className="w-full bg-green-600 hover:bg-green-700 transition text-white font-bold py-4 rounded-xl"
               >
-                Masuk
+                Daftar
               </button>
 
               <div className="flex items-center gap-4">
                 <div className="h-px bg-gray-200 flex-1"></div>
-                <span className="text-gray-400 text-sm">atau masuk dengan</span>
+                <span className="text-gray-400 text-sm">atau daftar dengan</span>
                 <div className="h-px bg-gray-200 flex-1"></div>
               </div>
 
@@ -155,9 +170,9 @@ export const Login = () => {
               </div>
 
               <p className="text-center text-gray-500">
-                Belum punya akun?{" "}
-                <span className="font-bold text-green-600 cursor-pointer" onClick={() => navigate("/register")}>
-                  Daftar Sekarang
+                Sudah punya akun?{" "}
+                <span className="font-bold text-green-600 cursor-pointer" onClick={() => navigate("/login")}>
+                  Masuk
                 </span>
               </p>
             </form>

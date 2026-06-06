@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Sidebar from "../../components/sidebar";
+import CameraPage from "./camera";
 
 const dashboardMenu = [
   { id: "dashboard", label: "Dashboard", icon: "fa-columns" },
@@ -17,9 +18,6 @@ export const Dashboard = () => {
     message: "",
     isError: false,
   });
-
-  const [loading, setLoading] = useState(true);
-
   const [user, setUser] = useState(() => {
     try {
       const savedUser = localStorage.getItem("user");
@@ -62,9 +60,10 @@ export const Dashboard = () => {
         }
       } catch (err) {
         console.error(err);
-      } finally {
-        setLoading(false);
-      }
+      } 
+      // finally {
+      //   setLoading(false);
+      // }
     };
 
     getProfile();
@@ -250,12 +249,26 @@ export const Dashboard = () => {
                   Arahkan kamera ke sampah
                 </p>
               </div>
-              <button
-                onClick={handleScan}
-                className="bg-green-600 text-white px-10 py-4 rounded-2xl font-bold hover:bg-green-700 transition transform active:scale-95 shadow-lg"
-              >
-                Ambil Foto & Analisis (AI)
-              </button>
+              {/* <div>
+                <button
+                  onClick={openCamera}
+                  className="bg-green-600 text-white px-10 py-4 rounded-2xl font-bold hover:bg-green-700 transition transform active:scale-95 shadow-lg"
+                >
+                  Ambil Foto & Analisis (AI)
+                </button>
+
+                <video ref={videoRef} autoPlay playsInline />
+                <canvas ref={canvasRef} style={{ display: "none" }} />
+                <img ref={imgRef} />
+                <button
+                  onClick={takePhoto}
+                  className={`bg-green-600 text-white px-10 py-4 rounded-2xl font-bold hover:bg-green-700 transition transform active:scale-95 shadow-lg ${isCameraOpen ? "block" : "hidden"}`}
+                >
+                  Ambil Foto
+                </button>
+              </div>
+              <button onClick={openCamera}>Buka Kamera</button> */}
+              <CameraPage />
             </div>
           )}
 
