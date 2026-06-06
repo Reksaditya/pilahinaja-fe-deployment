@@ -35,7 +35,7 @@ export const Dashboard = () => {
         const API_URL = import.meta.env.VITE_SERVER_URL;
         const token = localStorage.getItem("token");
 
-        const response = await fetch(`${API_URL}/user/${id}`, {
+        const response = await fetch(`${API_URL}/user`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
